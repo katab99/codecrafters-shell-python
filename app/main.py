@@ -1,4 +1,3 @@
-import os
 import shutil
 import sys
 
@@ -34,7 +33,14 @@ def do_type(*args):
     else:
         print(f"{cmd_name}: not found")
 
-    # TODO : 1. check if a file with the cmd_name exists, 2. if the file is executable (os.X_OK)
+
+def do_run_executable(command, *args):
+    exec_args = (command,) + args
+
+    print(f"Program was passed {len(exec_args)} args (including program name).")
+
+    for i, arg in enumerate(exec_args):
+        print(f"Arg #{i}: {arg}")
 
 
 def main():
@@ -47,6 +53,8 @@ def main():
 
         if command in COMMANDS:
             COMMANDS[command]["action"](*args)
+        elif shutil.which(command):
+            do_run_executable(command, *args)
         else:
             print(f"{command}: command not found")
 
