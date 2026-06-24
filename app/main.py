@@ -1,3 +1,5 @@
+import os
+import shutil
 import sys
 
 COMMANDS = {}
@@ -27,8 +29,12 @@ def do_type(*args):
 
     if cmd_name in COMMANDS:
         print(f"{cmd_name} is a shell builtin")
+    elif pth := shutil.which(cmd_name):
+        print(f"{cmd_name} is {pth}")
     else:
         print(f"{cmd_name}: not found")
+
+    # TODO : 1. check if a file with the cmd_name exists, 2. if the file is executable (os.X_OK)
 
 
 def main():
@@ -38,9 +44,6 @@ def main():
         tokens = user_input.split()
         command = tokens[0].lower()
         args = tokens[1:]
-
-        # if command == "exit":
-        #     break
 
         if command in COMMANDS:
             COMMANDS[command]["action"](*args)
