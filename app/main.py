@@ -1,4 +1,5 @@
 import shutil
+import subprocess
 import sys
 
 COMMANDS = {}
@@ -53,7 +54,9 @@ def main():
         if command in COMMANDS:
             COMMANDS[command]["action"](*args)
         elif shutil.which(command):
-            do_run_executable(command, *args)
+            subprocess.run(tokens)
+            # print(subprocess.check_output(tokens).decode(), end="")
+            # do_run_executable(command, *args)
         else:
             print(f"{command}: command not found")
 
