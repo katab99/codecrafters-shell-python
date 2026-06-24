@@ -35,12 +35,11 @@ def do_type(*args):
 
 
 def do_run_executable(command, *args):
-    exec_args = (command,) + args
+    print(f"Program was passed {len(args)} args (including program name).")
+    print(f"Arg #0 (program name): {command}")
 
-    print(f"Program was passed {len(exec_args)} args (including program name).")
-
-    for i, arg in enumerate(exec_args):
-        print(f"Arg #{i}: {arg}")
+    for i, arg in enumerate(args):
+        print(f"Arg #{i + 1}: {arg}")
 
 
 def main():
