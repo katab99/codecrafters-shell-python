@@ -35,14 +35,6 @@ def do_type(*args):
         print(f"{cmd_name}: not found")
 
 
-def do_run_executable(command, *args):
-    print(f"Program was passed {len(args) + 1} args (including program name).")
-    print(f"Arg #0 (program name): {command}")
-
-    for i, arg in enumerate(args):
-        print(f"Arg #{i + 1}: {arg}")
-
-
 def main():
     while True:
         user_input = input("$ ").strip()
@@ -55,8 +47,6 @@ def main():
             COMMANDS[command]["action"](*args)
         elif shutil.which(command):
             subprocess.run(tokens)
-            # print(subprocess.check_output(tokens).decode(), end="")
-            # do_run_executable(command, *args)
         else:
             print(f"{command}: command not found")
 
