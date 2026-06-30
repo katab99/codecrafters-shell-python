@@ -41,6 +41,16 @@ def do_pwd():
     print(os.getcwd())
 
 
+@command("cd")
+def do_cd(*args):
+    pth = args[0]
+
+    try:
+        os.chdir(pth)
+    except Exception:
+        print(f"cd: {pth}: No such file or directory")
+
+
 def main():
     while True:
         user_input = input("$ ").strip()
