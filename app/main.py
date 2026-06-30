@@ -45,6 +45,9 @@ def do_pwd():
 def do_cd(*args):
     pth = args[0]
 
+    if pth == "~":
+        pth = os.environ["HOME"]
+
     try:
         os.chdir(pth)
     except Exception:
