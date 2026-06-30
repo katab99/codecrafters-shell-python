@@ -1,3 +1,4 @@
+import os
 import shutil
 import subprocess
 import sys
@@ -33,6 +34,11 @@ def do_type(*args):
         print(f"{cmd_name} is {pth}")
     else:
         print(f"{cmd_name}: not found")
+
+
+@command("pwd")
+def do_pwd():
+    print(os.getcwd())
 
 
 def main():
